@@ -82,7 +82,7 @@ $("#btnlist").click(function() {
 	
 	showData.text("Loading the JSON file.");
 	
-	$.getJSON("https://umdl-prime.azurewebsites.net:3001/blocks", function (data){
+	$.getJSON("https://umdl-prime.azurewebsites.net:1337/blocks", function (data){
 		console.log(data);
 		
 		var items = data.items.map(function (item) {
