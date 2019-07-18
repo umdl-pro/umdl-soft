@@ -1,0 +1,175 @@
+
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.0.1/sorts/tablesort.date.min.js"></script>
+
+<!--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>-->
+
+ <link rel="stylesheet" href="/css/style.css"> 
+ <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">-->
+
+</head>
+<body>
+<center>
+
+<div>
+  <img src="UMdL_Banner.png">
+</div>
+
+<div>
+  <!--<a href="http://www.offsiteserver.co.uk:3001/first_template">Via Pug - ISO 3166</a>-->
+  &nbsp; &nbsp;
+  <a href="http://www.offsiteserver.co.uk/bc.html">Upload file</a>
+  
+</div>
+
+<br><br>
+<input id="btnlist" type="submit" value="BlockChain"></input>
+
+<input id="txtsearch" type="text"></input>
+<input id="btnsearch" type="submit"></input>
+<br><br>
+
+<div id="wrapper">
+
+ <!--<table id="keywords" class="display" cellspacing="0" width="30%" border="1px">-->
+ <table id="keywords" cellspacing="0" cellpadding="0">
+	<thead>
+		<tr>
+			<th>Code</th>
+            <th>Dataset</th>
+            <th>Hash</th>
+        </tr>
+    </thead>
+	<tbody id="show-data">
+	</tbody>
+</table>
+
+<table id="chain" cellspacing="0" cellpadding="0">
+	<thead>
+		<tr>
+			<th>Code</th>
+            <th>Name</th>
+            <th>Hash</th>
+        </tr>
+    </thead>
+	<tbody id="show-chain">
+	</tbody>
+</table>
+
+</div>
+
+<br><br>
+
+<div>
+
+ <form method="POST" id="BCFORM" action="http://www.offsiteserver.co.uk:3001/mineBlock" >
+  <strong>Add code&nbsp;&nbsp;</strong><input type="text" name="idata" id="idata">
+  <input type="submit" name="submit_form" value="Submit">
+ </form>
+</div>
+
+<br><br>
+<p class="greetings" id="people"></p>
+</center>
+</body>
+
+<script>
+$(document).ready(function () {
+$("#btnlist").click(function() {
+	var showData = $("#show-data");
+	
+	showData.text("Loading the JSON file.");
+	
+	$.getJSON("http://www.offsiteserver.co.uk:3001/blocks", function (data){
+		console.log(data);
+		
+		var items = data.items.map(function (item) {
+        return item.index + ': ' + item.chainID + ': ' + item.keyID + ': ' + item.keyVal + ": " + item.fieldID + ": " + item.fieldVal;
+      });
+
+      showData.empty();
+
+      if (items.length) {
+        var content = "<li>" + items.join("</li><li>") + "</li>";
+        var list = $("<ul />").html(content);
+        showData.append(list);
+    
+	  }
+	});
+    });
+    
+ 
+$("#btnsearch").click(function() {
+  var showData = $("#show-data");
+	
+	showData.text("Loading the JSON file.");
+	
+	$.getJSON("http://www.offsiteserver.co.uk:3001/blocks", function (data){
+		console.log(data);
+		
+		showData.empty();
+		
+		var items = data.items.map(function (item) {
+        
+			var s_keyVal = item.keyVal;
+			var s_fieldVal = item.chainID;
+			var s_hash = item.hash;
+			
+			// 1st if is used to handle nulls etc.
+			//if ( (s_keyVal && s_keyVal.length) || (s_fieldVal && s_fieldVal.length) ) {
+			if ( (s_keyVal && s_keyVal.length) ) {
+				var s_searchText = $("#txtsearch").val().toLowerCase();
+				//if (s_keyVal.toLowerCase().indexOf(s_searchText) >= 0 || s_fieldVal.toLowerCase().indexOf(s_searchText) >= 0) {
+				if (s_keyVal.toLowerCase().indexOf(s_searchText) >= 0) {
+				//alert(s_keyVal);
+					//var content = "<li>" + "<a href=http://www.offsiteserver.co.uk:3001/blockrec/" + s_keyVal + ">" + s_keyVal + "</a>" + "<p>&nbsp;&nbsp;" + s_fieldVal + "</p></li>";
+					//var list = $("<ul />").html(content);
+					//showData.append(list);
+					
+					//var content = "<td>" + "<a href=http://www.offsiteserver.co.uk:3001/blockrec/" + s_keyVal + ">" + s_keyVal + "</a></td><td>" + s_fieldVal + "</td>";
+					var content = "<td>" + "<a href=http://www.offsiteserver.co.uk:3001/blockrec/" + s_keyVal + ">" + s_keyVal + "</a></td>" + "<td>" + s_fieldVal + "</td>" + "<td>" + s_hash + "</td>";
+					var list = $("<tr />").html(content);
+					
+					showData.append(list);
+					
+					
+				};
+			};
+		});
+      });
+  });
+	//$('#example').DataTable();	
+});
+//});
+
+// usage = console.log( records.sort( getSortMethod('+keyVal', '-ts'));
+// +keyVal = ascending field name keyVal
+// -ts = descending field name ts (timestamp)
+function getSortMethod(){
+	var _args = Array.prototype.slice.call(arguments);
+	return function(a,b) {
+		for (var x in _args){
+			var ax = a[_args[x].substring(1)];
+			var bx = b[_args[x].substring(1)];
+			var cx;
+			
+			ax = typeof ax == "string" ? ax.toLowerCase() : ax / 1;
+			bx = typeof bx == "string" ? bx.toLowerCase() : bx / 1;
+			
+			if(_args[x].substring(0,1) == "-"){cx = ax; ax = bx; bx = cx}
+			if(ax != bx){return ax < bx ? -1 : 1}
+			
+		}
+		 
+	}
+}
+
+$(function(){
+  $('#keywords').tablesorter(); 
+});
+
+</script>
+</html>
+
