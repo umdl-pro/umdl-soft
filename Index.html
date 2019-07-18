@@ -64,7 +64,7 @@
 
 <div>
 
- <form method="POST" id="BCFORM" action="https://umdl-prime.azurewebsites.net:1337/mineBlock" >
+ <form method="POST" id="BCFORM" action="https://umdl-prime.azurewebsites.net:3000/mineBlock" >
   <strong>Add code&nbsp;&nbsp;</strong><input type="text" name="idata" id="idata">
   <input type="submit" name="submit_form" value="Submit">
  </form>
@@ -82,7 +82,7 @@ $("#btnlist").click(function() {
 	
 	showData.text("Loading the JSON file.");
 	
-	$.getJSON("https://umdl-prime.azurewebsites.net:1337/blocks", function (data){
+	$.getJSON("https://umdl-prime.azurewebsites.net:3000/blocks", function (data){
 		console.log(data);
 		
 		var items = data.items.map(function (item) {
@@ -106,7 +106,7 @@ $("#btnsearch").click(function() {
 	
 	showData.text("Loading the JSON file.");
 	
-	$.getJSON("https://umdl-prime.azurewebsites.net:1337/blocks", function (data){
+	$.getJSON("https://umdl-prime.azurewebsites.net:3000/blocks", function (data){
 		console.log(data);
 		
 		showData.empty();
@@ -129,7 +129,7 @@ $("#btnsearch").click(function() {
 					//showData.append(list);
 					
 					//var content = "<td>" + "<a href=http://www.offsiteserver.co.uk:3001/blockrec/" + s_keyVal + ">" + s_keyVal + "</a></td><td>" + s_fieldVal + "</td>";
-					var content = "<td>" + "<a href=https://umdl-prime.azurewebsites.net:1337/blockrec/" + s_keyVal + ">" + s_keyVal + "</a></td>" + "<td>" + s_fieldVal + "</td>" + "<td>" + s_hash + "</td>";
+					var content = "<td>" + "<a href=https://umdl-prime.azurewebsites.net:3000/blockrec/" + s_keyVal + ">" + s_keyVal + "</a></td>" + "<td>" + s_fieldVal + "</td>" + "<td>" + s_hash + "</td>";
 					var list = $("<tr />").html(content);
 					
 					showData.append(list);
