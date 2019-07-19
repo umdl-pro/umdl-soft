@@ -5,7 +5,7 @@
   "version_detected": "6.9",
   "version_to_create": "node|6.9",
   "scripts": {
-   "npm install": "crypto-js"
+   "npm install": "crypto-js",
    "npm install": "express",
    "npm install": "cors",
    "npm install": "ws",
