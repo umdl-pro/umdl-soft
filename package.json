@@ -5,6 +5,7 @@
   "version_detected": "10.0",
   "version_to_create": "node|10.0",
   "scripts": {
+   "npm install": "node",
    "npm install": "crypto-js",
    "npm install": "express",
    "npm install": "cors",
