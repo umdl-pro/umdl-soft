@@ -2,8 +2,8 @@
   "app_url": "https://umdl-prime.azurewebsites.net",
   "name": "umdl-prime",
   "src_path": "/home/Velislav/quickstart/umdl-prime ",
-  "version_detected": "6.9",
-  "version_to_create": "node|6.9",
+  "version_detected": "10.0",
+  "version_to_create": "node|10.0",
   "scripts": {
    "npm install": "crypto-js",
    "npm install": "express",
