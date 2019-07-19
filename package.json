@@ -4,15 +4,15 @@
   "src_path": "/home/Velislav/quickstart/umdl-prime ",
   "version_detected": "6.9",
   "version_to_create": "node|6.9",
-   npm install "crypto-js",
-   npm install "express",
-   npm install "cors",
-   npm install "ws",
-   npm install "body-parser",
-   npm install "request",
-   npm install "formidable",
-   npm install "fs"
-
-
-
+  "scripts": {
+   "npm install": "crypto-js"
+   "npm install": "express",
+   "npm install": "cors",
+   "npm install": "ws",
+   "npm install": "body-parser",
+   "npm install": "request",
+   "npm install": "formidable",
+   "npm install": "fs",
+    "start": "node main.js"
+    }
 }
