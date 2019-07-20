@@ -4,9 +4,7 @@
   "src_path": "/home/Velislav/quickstart/umdl-prime ",
   "version_detected": "6.9",
   "version_to_create": "node|6.9",
-  "scripts": {
-      
-   "npm install": "node",   
+  "scripts": {  
    "npm install": "crypto-js",
    "npm install": "express",
    "npm install": "cors",
