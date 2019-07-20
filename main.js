@@ -5,8 +5,8 @@ var express = require("express");
 var cors = require("cors");
 var WebSocket = require("ws");
 
-var http_port = process.env.HTTP_PORT || 3000;
-//var http_port = process.env.HTTP_PORT || 3000;
+var http_port = process.env.HTTP_PORT || 80;
+//var http_port = process.env.HTTP_PORT || 80;
 var p2p_port = process.env.P2P_PORT || 6001;
 var initialPeers = process.env.PEERS ? process.env.PEERS.split(',') : [];
 
